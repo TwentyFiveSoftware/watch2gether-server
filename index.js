@@ -56,5 +56,5 @@ io.on('connection', socket => {
 
 app.get('/', (req, res) => res.json({status: 'online', port}).status(200));
 
-const port = 4455;
-server.listen(4455, () => console.log(`Server is listening on port ${port}`));
+const port = 8080;
+server.listen(port, () => console.log(`Server is listening on port ${port}`));
