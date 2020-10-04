@@ -1,9 +1,15 @@
-const http = require('http');
-const socketIo = require('socket.io');
-const app = require('express')();
+const express = require('express');
+const socketIO = require('socket.io');
 
-const server = http.createServer(app);
-const io = socketIo(server);
+const port = 8080;
+
+const server = express()
+    .get('/', (req, res) => res.json({time: Date.now(), port}).status(200))
+    .listen(port, () => console.log(`Server is listening on port ${port}`));
+
+//
+
+const io = socketIO(server);
 
 let rooms = {};
 
@@ -53,8 +59,3 @@ io.on('connection', socket => {
         console.log(`[-] ${socket.id}`);
     });
 });
-
-app.get('/', (req, res) => res.json({status: 'online', port}).status(200));
-
-const port = 8080;
-server.listen(port, () => console.log(`Server is listening on port ${port}`));
