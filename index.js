@@ -1,7 +1,7 @@
 const express = require('express');
 const socketIO = require('socket.io');
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 const server = express()
     .get('/', (req, res) => res.json({time: Date.now(), port}).status(200))
